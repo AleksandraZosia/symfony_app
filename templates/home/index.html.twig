@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Manadżer Produktów{% endblock %}
+
+{% block body %}
+<h1>Zarządzanie Produktami</h1>
+
+<div class='main'>
+<div class='table-wrapper'>
+<table border="1" id='data-table' cellpadding="10">
+<caption>Zestawienie produktów znajdujących się w bazie</caption>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Dodający</th>
+            <th>Produkt</th>
+            <th>Data</th>
+            <th>Kolor</th>
+            <th>Ilość</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for item in data %}
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.user.login }}</td>
+                <td>{{ item.product }}</td>
+                <td>{{ item.date|date('Y-m-d') }}</td>
+                <td>{{ item.color }}</td>
+                <td>{{ item.amount }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Brak danych</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+<div class='btns-wrapper'><button id='show-form'>Dodaj produkt</button> 
+<form action="{{ path('data-export') }}" method="GET">
+<button type="submit" class='long-btn' >
+  Export Excel
+</button></form> <form action="{{ logout_path() }}" method="post">
+    <button type="submit" class='long-btn'>
+        Wyloguj
+    </button>
+</form></div></div>
+<dialog id='dialog'>
+ 
+    <div id="form-container">
+    <div class='wrapper'><h2>Dodaj Produkt</h2> <button id='close-form'>Zamknij</button></div>
+   
+        {{ form_start(form, {'attr': {'id': 'ajax-form'}}) }}
+            {{ form_row(form.product) }}
+            {{ form_row(form.color, {'attr':{'id': 'pen-color'}}) }}
+            {{ form_row(form.amount) }}
+            <button type="submit" class="btn btn-success mt-2">Dodaj</button>
+        {{ form_end(form) }}
+    </div>
+</dialog>
+
+{% endblock %}
