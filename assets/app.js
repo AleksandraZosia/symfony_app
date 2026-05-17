@@ -16,44 +16,47 @@ document.addEventListener("DOMContentLoaded", function () {
     const dialog = document.getElementById("dialog");
     const showFormBtn = document.getElementById("show-form");
     const closeFormBtn = document.getElementById("close-form");
-    showFormBtn.addEventListener("click", function (e) {
-        dialog.showModal();
-    });
-
-    closeFormBtn.addEventListener("click", function () {
-        dialog.close();
-    });
+    showFormBtn &&
+        showFormBtn.addEventListener("click", function (e) {
+            dialog.showModal();
+        });
+    closeFormBtn &&
+        closeFormBtn.addEventListener("click", function () {
+            dialog.close();
+        });
 
     const productSelector = document.getElementById("data_product");
 
-    productSelector.addEventListener("change", function () {
-        if (this.value == "pen") {
-            colorRow.style.display = "block";
-            colorSelector.required = true;
-        } else {
-            colorRow.style.display = "none";
-            colorSelector.required = false;
-            colorSelector.value = "";
-        }
-    });
+    productSelector &&
+        productSelector.addEventListener("change", function () {
+            if (this.value == "pen") {
+                colorRow.style.display = "block";
+                colorSelector.required = true;
+            } else {
+                colorRow.style.display = "none";
+                colorSelector.required = false;
+                colorSelector.value = "";
+            }
+        });
 
     const tableBody = document.querySelector("#data-table tbody");
 
-    form.addEventListener("submit", function (e) {
-        e.preventDefault();
-        const formData = new FormData(form);
+    form &&
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const formData = new FormData(form);
 
-        fetch(form.action || window.location.href, {
-            method: "POST",
-            body: formData,
-            headers: {
-                "X-Requested-With": "XMLHttpRequest",
-            },
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                if (data.success) {
-                    const newRow = `
+            fetch(form.action || window.location.href, {
+                method: "POST",
+                body: formData,
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest",
+                },
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.success) {
+                        const newRow = `
                     <tr>
                         <td>${data.newData.id}</td>
                         <td>${data.newData.user}</td>
@@ -63,19 +66,19 @@ document.addEventListener("DOMContentLoaded", function () {
                         <td>${data.newData.amount}</td>
                     </tr>
                 `;
-                    tableBody.insertAdjacentHTML("beforeend", newRow);
-                    form.reset();
-                    dialog.close();
-                } else {
-                    alert(
-                        "Coś poszło nie tak: " +
-                            (data.errors || "Niezidentyfikowany błąd.")
-                    );
-                }
-            })
-            .catch((error) => {
-                console.error("Error:", error);
-                alert("Wystąpił błąd podczas zapisywania danych.");
-            });
-    });
+                        tableBody.insertAdjacentHTML("beforeend", newRow);
+                        form.reset();
+                        dialog.close();
+                    } else {
+                        alert(
+                            "Coś poszło nie tak: " +
+                                (data.errors || "Niezidentyfikowany błąd.")
+                        );
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                    alert("Wystąpił błąd podczas zapisywania danych.");
+                });
+        });
 });
