@@ -1,3 +1,31 @@
+# Description
+
+This is a simple project to manage products in the database. It's for a Polish-speaking users.
+
+## It allows users to
+
+### Create an account:
+
+![alt-text](images/register.png "Register screen with form that includes login, first name, last name and password.")
+
+### Log in:
+
+![alt-text](images/login.png "Login screen with form that includes login and password.")
+
+### View added products:
+
+![alt-text](images/main.png "Main screen with products table and 3 buttons. Add product, export data and logout.")
+
+### Add pencils:
+
+![alt-text](images/add_pencil.png "Main screen with add product dialog open. It has 2 fields: add product (with pencil selected) and amount.")
+
+### Add pens:
+
+![alt-text](images/add_pen.png "Main screen with add product dialog open. It has 3 fields: add product (with pen selected), color (with black selected) and amount.")
+
+---
+
 # Setup Guide
 
 This project uses Docker for local development and deployment.
