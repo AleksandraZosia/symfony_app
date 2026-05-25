@@ -45,8 +45,7 @@
     .column-wrapper {
         display: flex;
         flex-direction: column;
-    }
-    }
+    }}
 
 
 html,
@@ -95,6 +94,10 @@ h1{
 h2 {
     font-size: 1.3rem;
     color:var(--text);
+}
+
+caption {
+    text-align: start;
 }
 
 
@@ -174,6 +177,7 @@ dialog::backdrop {
 
 .main {
     display: flex;
+    gap: 1rem
 }
 
 .table-wrapper {
@@ -186,7 +190,6 @@ dialog::backdrop {
 }
 
 .btns-wrapper {
-    padding-left: 0.5rem;
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
@@ -197,6 +200,9 @@ dialog::backdrop {
    grid-template-columns: 100px 1fr;
 }
 
+.alert-danger {
+    color: var(--error)
+}
 
 #close-form {
     background-color: transparent;

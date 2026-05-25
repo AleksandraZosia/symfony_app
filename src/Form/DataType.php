@@ -20,8 +20,8 @@ class DataType extends AbstractType
                 'label' => 'Rodzaj produktu',
                'attr' => ['id' =>'type-selector'],
                 'choices'  => [
-                    'Pencil' => 'pencil',
-                    'Pen' => 'pen',
+                    'Ołówek' => 'pencil',
+                    'Długopis' => 'pen',
                 ],
             ])
             ->add('color', ChoiceType::class,[
@@ -29,13 +29,13 @@ class DataType extends AbstractType
                 'required' => false,
                 'label' => 'Kolor długopisu',
                 'choices' =>[
-                    'Red' =>'Red',
-                    'Black'=>'Black',
-                    'Blue' =>'Blue'
+                    'Czerwony' =>'Red',
+                    'Czarny'=>'Black',
+                    'Niebieski' =>'Blue'
                 ]
             ]  )
             ->add('amount', IntegerType::class, [
-                'label' => 'Ilość produktów'
+                'label' => 'Liczba produktów'
             ])
            
         ;
