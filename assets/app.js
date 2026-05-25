@@ -7,7 +7,7 @@ import "./stimulus_bootstrap.js";
  */
 import "./styles/app.css";
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("turbo:load", function () {
     const form = document.getElementById("ajax-form");
 
     const colorRow = document.getElementById("color-selector");
