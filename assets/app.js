@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const colorRow = document.getElementById("color-selector");
     const colorSelector = document.getElementById("data_color");
+    const exportBtn = document.getElementById("export-data");
+    const noDataRow = document.getElementById("no-data");
 
     const dialog = document.getElementById("dialog");
     const showFormBtn = document.getElementById("show-form");
@@ -69,6 +71,8 @@ document.addEventListener("DOMContentLoaded", function () {
                         tableBody.insertAdjacentHTML("beforeend", newRow);
                         form.reset();
                         dialog.close();
+                        exportBtn.disabled = false;
+                        noDataRow.display = none;
                     } else {
                         alert(
                             "Coś poszło nie tak: " +
@@ -76,8 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         );
                     }
                 })
-                .catch((error) => {
-                    console.error("Error:", error);
+                .catch(() => {
                     alert("Wystąpił błąd podczas zapisywania danych.");
                 });
         });

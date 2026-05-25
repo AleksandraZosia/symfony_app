@@ -116,6 +116,13 @@ input {
 button {
     font-size: 1rem;
     padding-block: 0.5rem;
+
+    &:disabled {
+       
+        filter: grayscale();
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
 }
 
 a:visited {
@@ -145,10 +152,11 @@ select{
 
 button:hover,
 select:hover {
+    &:not(:disabled) {
    cursor: pointer;
    border-color: var(--hover);
    color: var(--hover);
-}
+}}
 
 .long-btn {
     width: 100%;

@@ -8,13 +8,12 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use App\Repository\DataRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\StreamedResponse;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 class ExportController extends AbstractController
 {
     #[Route('/data-export', name: 'data-export')]
-    public function exportUsers(DataRepository $dataRepository): Response
+    public function exportUsers(DataRepository $dataRepository): StreamedResponse
     {
 
         $qb = $dataRepository->createQueryBuilder('d')
@@ -45,7 +44,6 @@ class ExportController extends AbstractController
 
         $writer = new Xlsx($spreadsheet);
 
-
         $response = new StreamedResponse(function () use ($writer) {
             $writer->save('php://output');
         });
@@ -60,6 +58,11 @@ class ExportController extends AbstractController
             'attachment; filename="data.xlsx"'
         );
         
+        $response->headers->set(
+            'Cache-Control',
+            'max-age=0'
+        );
+
         return $response;
     }
 }

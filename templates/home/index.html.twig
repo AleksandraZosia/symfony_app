@@ -32,7 +32,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">Brak danych</td>
+                <td colspan="6" id='no-data'>Brak danych</td>
             </tr>
         {% endfor %}
     </tbody>
@@ -40,7 +40,7 @@
 </div>
 <div class='btns-wrapper'><button id='show-form'>Dodaj produkt</button> 
 <form action="{{ path('data-export') }}" method="GET">
-<button type="submit" class='long-btn' >
+<button type="submit" class='long-btn'{% if not data %}disabled{% endif %} id='export-data' data-turbo="false" >
   Export Excel
 </button></form> <form action="{{ logout_path() }}" method="post">
     <button type="submit" class='long-btn'>
